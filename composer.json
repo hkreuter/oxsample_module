@@ -1,0 +1,24 @@
+{
+  "name": "hkreuter/oxsample-module",
+  "description": "This package contains hkreuter/oxsample-module source code.",
+  "type": "oxideshop-module",
+  "keywords": [
+    "oxid",
+    "modules",
+    "eShop"
+  ],
+  "license": "GPL-3.0-only",
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "HkReuter\\OxSampleModule\\": "../../../source/modules/hkreuter/oxsample"
+    }
+  },
+  "extra": {
+    "oxideshop": {
+      "target-directory": "hkreuter/oxsample"
+    }
+  }
+}
