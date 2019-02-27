@@ -1,0 +1,11 @@
+---
+# Override any variable from 'ansible/vars/oxideshop.yml' and 'base_vm/ansible/vars/default.yml'
+php:
+  #version: 7.1
+  composer:
+    github_token: <your_token_goes_here>
+selenium:
+  install: true
+vagrant_local:
+  vm:
+    name: oxideshop_workshop
