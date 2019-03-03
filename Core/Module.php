@@ -8,7 +8,7 @@ namespace HkReuter\OxSampleModule\Core;
 
 /**
  * Class Module
- * 
+ *
  * @package HkReuter\OxSampleModule\Core
  */
 class Module
@@ -33,6 +33,7 @@ class Module
 	public function onActivate()
 	{
 		self::extendShopDataModel();
+		self::insertSeoUrls();
 		self::clearTmp();
 	}
 
@@ -41,6 +42,7 @@ class Module
 	 */
 	public function onDeactivate()
 	{
+		self::removeSeoUrls();
 		self::clearTmp();
 	}
 
@@ -112,5 +114,33 @@ class Module
 				\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
 			}
 		}
+	}
+
+	/**
+	 * Insert seo link.
+	 */
+	private static function insertSeoUrls()
+	{
+        $oxobjectidDe = \OxidEsales\Eshop\Core\Registry::getUtilsObject()->generateUId();
+        $oxobjectidEn = \OxidEsales\Eshop\Core\Registry::getUtilsObject()->generateUId();
+        $stdurl = 'index.php?cl=hkreuter_oxsample_controller';
+        $seoUrlDe = 'OxSample/BeispielModul/';
+        $seoUrlEn = 'OxSample/ExampleModule/';
+        $oxidentDe = md5(strtolower($seoUrlDe));
+        $oxidentEn = md5(strtolower($seoUrlEn));
+		$query = "INSERT INTO oxseo (oxobjectid, oxident, oxlang, oxstdurl, oxseourl, oxtype) VALUES " .
+		         "('{$oxobjectidDe}', '{$oxidentDe}', 0, '{$stdurl}', '{$seoUrlDe}', 'static'), " .
+		         "('{$oxobjectidEn}', '{$oxidentEn}', 1, '{$stdurl}', '{$seoUrlEn}', 'static')";
+
+		\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
+	}
+
+	/**
+	 * Insert seo link.
+	 */
+	private static function removeSeoUrls()
+	{
+		$query = "DELETE FROM oxseo WHERE oxseourl like '%OxSample%' LIMIT 2";
+		\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
 	}
 }

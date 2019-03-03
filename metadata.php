@@ -27,13 +27,15 @@ $aModule = [
 	'extend'       => [
 		\OxidEsales\Eshop\Application\Model\User::class => \HkReuter\OxSampleModule\Application\Model\User::class
 	],
-	'controllers' => [
+	'controllers'  => [
+		'hkreuter_oxsample_controller' => \HkReuter\OxSampleModule\Application\Controller\FrontendController::class
 	],
 	'events' => [
 		'onActivate'   => 'HkReuter\OxSampleModule\Core\Module::onActivate',
 		'onDeactivate' => 'HkReuter\OxSampleModule\Core\Module::onDeactivate',
 	],
 	'templates' => [
+		'oxsample_frontend.tpl' => 'hkreuter/oxsample/Templates/oxsample_frontend.tpl',
 	],
 	'blocks' => [
 	],
