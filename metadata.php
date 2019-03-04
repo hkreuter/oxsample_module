@@ -37,6 +37,14 @@ $aModule = [
 	'blocks' => [
 	],
 	'settings' => [
+		/** Main */
+		[
+			'group'       => 'oxsample_main',
+			'name'        => 'OxSampleGreetingMode',
+			'type'        => 'select',
+			'constraints' => 'polite|impolite',
+			'value'       => 'polite'
+		],
 	],
 	'smartyPluginDirectories' => [
 	]
