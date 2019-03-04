@@ -12,6 +12,8 @@ namespace HkReuter\OxSampleModule\Application\Controller;
  */
 class FrontendController extends \OxidEsales\Eshop\Application\Controller\FrontendController
 {
+	const GREETING_MODE_CONFIG_VARNAME = 'OxSampleGreetingMode';
+
 	/**
 	 * Current view template
 	 *
@@ -44,9 +46,12 @@ class FrontendController extends \OxidEsales\Eshop\Application\Controller\Fronte
 	 */
 	public function doSomethingAction()
 	{
-		$this->_aViewData['oxsample_greeting'] = "OXSAMPLE_MODULE_DOSOMETHING";
-		$this->_aViewData['oxsample_date'] = date('Y-m-d H:i:s');
+		$postfix = 'polite';
+		if (\OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam(self::GREETING_MODE_CONFIG_VARNAME)) {
+			$postfix = \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam(self::GREETING_MODE_CONFIG_VARNAME);
+		}
 
-		return 'hkreuter_oxsample_controller';
+		$this->_aViewData['oxsample_greeting'] = "OXSAMPLE_MODULE_DOSOMETHING_" . strtoupper($postfix);
+		$this->_aViewData['oxsample_date'] = date('Y-m-d H:i:s');
 	}
 }
