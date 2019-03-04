@@ -38,12 +38,15 @@ class FrontendController extends \OxidEsales\Eshop\Application\Controller\Fronte
 	}
 
 	/**
-	 * TODO: do something - implement
+	 * Add information to template.
 	 *
 	 * @return int
 	 */
 	public function doSomethingAction()
 	{
-		//TODO
+		$this->_aViewData['oxsample_greeting'] = "OXSAMPLE_MODULE_DOSOMETHING";
+		$this->_aViewData['oxsample_date'] = date('Y-m-d H:i:s');
+
+		return 'hkreuter_oxsample_controller';
 	}
 }

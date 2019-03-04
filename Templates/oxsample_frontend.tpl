@@ -1,6 +1,12 @@
 [{capture append="oxidBlock_content"}]
 <h1 class="page-header">OXID eShop 6 Example Module</h1>
 
+<p>
+    [{if $oxsample_greeting}]
+        [{oxmultilang ident="$oxsample_greeting"}][{$oxsample_date}]
+    [{/if}]
+</p>
+
 <br>
 <form action="[{$oViewConf->getSelfActionLink()}]" name="OxsampleDoSomethingAction" method="post" role="form">
     <div>
@@ -12,3 +18,5 @@
 </form>
 
 <br>
+
+[{include file="layout/page.tpl"}]
