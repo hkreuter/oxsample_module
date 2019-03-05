@@ -14,6 +14,8 @@ class FrontendController extends \OxidEsales\Eshop\Application\Controller\Fronte
 {
 	const GREETING_MODE_CONFIG_VARNAME = 'OxSampleGreetingMode';
 
+	const OXSAMPLE_CONTROLLER_SESSION_VARNAME = 'OxSampleSessionInfo';
+
 	/**
 	 * Current view template
 	 *
@@ -35,6 +37,10 @@ class FrontendController extends \OxidEsales\Eshop\Application\Controller\Fronte
 	 */
 	public function render()
 	{
+		$session = \OxidEsales\Eshop\Core\Registry::getSession();
+		$info = $session->getVariable(self::OXSAMPLE_CONTROLLER_SESSION_VARNAME) ? $session->getVariable(self::OXSAMPLE_CONTROLLER_SESSION_VARNAME) : '';
+		$this->_aViewData['oxsample_info'] = $info;
+
 		$template = parent::render();
 		return $template;
 	}
@@ -53,5 +59,19 @@ class FrontendController extends \OxidEsales\Eshop\Application\Controller\Fronte
 
 		$this->_aViewData['oxsample_greeting'] = "OXSAMPLE_MODULE_DOSOMETHING_" . strtoupper($postfix);
 		$this->_aViewData['oxsample_date'] = date('Y-m-d H:i:s');
+	}
+
+	/**
+	 * Add information to session.
+	 *
+	 * @return int
+	 */
+	public function doSomethingElseAction()
+	{
+		$language = \OxidEsales\Eshop\Core\Registry::getLang();
+		$value = sprintf($language->translateString('OXSAMPLE_MODULE_DOSOMETHING_ELSE', $language->getBaseLanguage()), date('Y-m-d h:i:s'));
+		\OxidEsales\Eshop\Core\Registry::getSession()->setVariable(self::OXSAMPLE_CONTROLLER_SESSION_VARNAME, $value);
+
+		return 'hkreuter_oxsample_controller';
 	}
 }
