@@ -32,6 +32,7 @@ class Module
 	 */
 	public function onActivate()
 	{
+		self::extendShopDataModel();
 		self::clearTmp();
 	}
 
@@ -88,6 +89,27 @@ class Module
 				@unlink($filePath);
 			} else {
 				self::clearDirectory($filePath);
+			}
+		}
+	}
+
+	/**
+	 * Add columns to shop tables.
+	 * Curently only oxuser is extended.
+	 */
+	public static function extendShopDataModel()
+	{
+		$dbMetaDataHandler = oxNew(\OxidEsales\Eshop\Core\DbMetaDataHandler::class);
+		$tableFields = [
+			'oxuser' => [
+					'field' => 'OXSAMPLE_STATUS',
+				    'specs' => " enum('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'"
+				]
+		];
+		foreach ($tableFields as $tableName => $sub) {
+			if (!$dbMetaDataHandler->fieldExists($sub['field'], $tableName)) {
+				$query = "ALTER TABLE `" . $tableName . "` ADD `" . $sub['field'] . "` " . $sub['specs'];
+				\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
 			}
 		}
 	}

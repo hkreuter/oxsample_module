@@ -25,6 +25,7 @@ $aModule = [
 	'url'          => 'https://github.com/hkreuter',
 	'email'        => 'heike.reuter@oxid-esales.com',
 	'extend'       => [
+		\OxidEsales\Eshop\Application\Model\User::class => \HkReuter\OxSampleModule\Application\Model\User::class
 	],
 	'controllers' => [
 	],
