@@ -20,9 +20,10 @@ class User extends User_parent
 	 */
 	public function setStatus($status)
 	{
-		$constName = 'static::OXSAMPLE_STATUS_' . strtoupper($status);
-        if (defined($constName)) {
-	        $this->assign(['oxsample_status' => constant($constName)]);
+		$constName = 'OXSAMPLE_STATUS_' . strtoupper($status);
+		$rawConst = 'static::' . $constName;
+        if (defined($rawConst)) {
+	        $this->assign(['oxsample_status' => constant($rawConst)]);
 	        $this->save();
         } else {
         	throw new \OxidEsales\EshopCommunity\Core\Exception\StandardException('Invalid status: ' . $constName);
