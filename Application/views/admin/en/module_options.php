@@ -10,4 +10,8 @@ $aLang = [
 	'SHOP_MODULE_OxSampleGreetingMode'          => 'Greeting mode',
 	'SHOP_MODULE_OxSampleGreetingMode_polite'   => 'polite',
 	'SHOP_MODULE_OxSampleGreetingMode_impolite' => 'impolite',
+	'SHOP_MODULE_GROUP_oxsample_frontend'       => 'Frontend - Settings',
+	'SHOP_MODULE_OxSampleWidgetMode'            => 'Widgetmode',
+	'SHOP_MODULE_OxSampleWidgetMode_on'         => 'on',
+	'SHOP_MODULE_OxSampleWidgetMode_off'        => 'off',
 ];

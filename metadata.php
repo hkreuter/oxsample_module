@@ -48,7 +48,16 @@ $aModule = [
 			'constraints' => 'polite|impolite',
 			'value'       => 'polite'
 		],
+		/** smarty */
+		[
+			'group'       => 'oxsample_frontend',
+			'name'        => 'OxSampleWidgetMode',
+			'type'        => 'select',
+			'constraints' => 'on|off',
+			'value'       => 'on'
+		],
 	],
 	'smartyPluginDirectories' => [
+		'Core/Smarty/Plugin'
 	]
 ];
