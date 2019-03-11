@@ -38,6 +38,11 @@ $aModule = [
 		'oxsample_frontend.tpl' => 'hkreuter/oxsample/Templates/oxsample_frontend.tpl',
 	],
 	'blocks' => [
+		[
+			'template' => 'layout/header.tpl',
+			'block'    =>'layout_header_bottom',
+			'file'     =>'/Templates/Blocks/header_main_bottom.tpl'
+		]
 	],
 	'settings' => [
 		/** Main */
