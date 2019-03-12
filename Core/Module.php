@@ -15,6 +15,8 @@ class Module
 {
 	const MODULE_ID = 'hkreuter/oxsample-module';
 
+    const MODULE_TABLE_NAME = 'oxsample_oxobject2fish';
+
 	/**
 	 * Files that are not deleted.
 	 *
@@ -34,6 +36,7 @@ class Module
 	{
 		self::extendShopDataModel();
 		self::insertSeoUrls();
+		self::createTable();
 		self::clearTmp();
 	}
 
@@ -142,5 +145,24 @@ class Module
 	{
 		$query = "DELETE FROM oxseo WHERE oxseourl like '%OxSample%' LIMIT 2";
 		\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
+	}
+
+	/**
+	 * Create table.
+	 */
+	private static function createTable()
+	{
+		$query = "CREATE TABLE IF NOT EXISTS `" . self::MODULE_TABLE_NAME . "` (" .
+		         "`OXID` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'Record id'," .
+		         "`OXOBJECTID` char(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT '' COMMENT 'Article id (oxarticles)', " .
+		         "`FISHNAME` enum( 'Karpfen','Guppy','Pangasius','Makrele','Hering','Hai','Aal','Kabeljau','Hecht','Wels') NOT NULL DEFAULT 'Guppy' COMMENT 'fish name'," .
+		         "`OXPOS` int(11) NOT NULL DEFAULT '0' COMMENT 'Sorting'," .
+		         "`OXTIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp'," .
+		         "PRIMARY KEY (`OXID`)," .
+		         "UNIQUE KEY `OXMAINIDX` (`FISHNAME`,`OXOBJECTID`)," .
+		         "KEY `OXOBJECTID` (`OXOBJECTID`)," .
+		         "KEY `OXPOS` (`OXPOS`)" .
+		         ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Many-to-many relationship between articles and fishnames'";
+		\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute( $query );
 	}
 }

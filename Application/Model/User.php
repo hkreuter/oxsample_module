@@ -8,6 +8,7 @@ namespace HkReuter\OxSampleModule\Application\Model;
 
 /**
  * Class User
+ * @package HkReuter\OxSampleModule\Application\Model
  */
 class User extends User_parent
 {
