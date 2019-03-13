@@ -13,7 +13,10 @@ namespace HkReuter\OxSampleModule\Tests;
  */
 class DataCreator
 {
+	const ARTICLE_ID = '_articleId';
+	const CATEGORY_ID = '_categoryId';
 	const USER_ID = '_testuserId';
+	const ART2CAT_ID = '_art2catId';
 
 	/**
 	 * Create a test user.
@@ -46,5 +49,63 @@ class DataCreator
 		//Unless we are admin, we cannot add oxpasssalt via model, so do is directly in database
 		$query = "UPDATE oxuser SET oxpasssalt = 'd552ed74c7977b5ba8741744c0b2c9ff' WHERE oxid = '" . self::USER_ID . "'";
 		\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
+	}
+
+	/**
+	 * Create test category
+	 */
+	public function createCategory()
+	{
+		$data = [
+			'oxparentid' => 'oxrootid',
+			'oxleft'     => '1',
+			'oxright'    => '2',
+			'oxrootid'   => '_rootid',
+			'oxactive'   => 1,
+			'oxtitle'    => self::CATEGORY_TITLE,
+			'oxsort'     => 1
+		];
+
+		$category = oxNew(\OxidEsales\Eshop\Application\Model\Category::class);
+		$category->setId(self::CATEGORY_ID);
+		$category->assign($data);
+		$category->save();
+	}
+
+	/**
+	 * Adds article to database.
+	 *
+	 */
+	public function createArticle()
+	{
+		$data = [
+			'oxprice'  => '10.0',
+			'oxstock'  => 100,
+			'oxactive' => 1,
+			'oxtitle'  => 'some title'
+		];
+
+		$article = oxNew(\OxidEsales\Eshop\Application\Model\Article::class);
+		$article->setId(self::ARTICLE_ID);
+		$article->assign($data);
+		$article->save();
+	}
+
+	/**
+	 * Assign article to category
+	 */
+	public function assignArticleToCategory()
+	{
+		$data = [
+			'oxtime'     => '0',
+			'oxobjectid' => self::ARTICLE_ID,
+			'oxcatnid'   => self::CATEGORY_ID,
+			'oxshopid'   => '1',
+		];
+
+		$relation = oxNew(\OxidEsales\Eshop\Application\Model\Object2Category::class);
+		$relation->setId(self::ART2CAT_ID);
+		$relation->assign($data);
+		$relation->save();
 	}
 }
