@@ -27,8 +27,10 @@ $aModule = [
 	'extend'       => [
 		\OxidEsales\Eshop\Application\Model\User::class => \HkReuter\OxSampleModule\Application\Model\User::class
 	],
-	'controllers'  => [
-		'hkreuter_oxsample_controller' => \HkReuter\OxSampleModule\Application\Controller\FrontendController::class
+	'controllers' => [
+		'hkreuter_oxsample_controller'   => \HkReuter\OxSampleModule\Application\Controller\FrontendController::class,
+		'oxsample_admin_ajax'            => \HkReuter\OxSampleModule\Application\Controller\Admin\AjaxControllerAjax::class,
+		'oxsample_admin_ajax_controller' => \HkReuter\OxSampleModule\Application\Controller\Admin\AjaxController::class
 	],
 	'events' => [
 		'onActivate'   => 'HkReuter\OxSampleModule\Core\Module::onActivate',
@@ -36,6 +38,8 @@ $aModule = [
 	],
 	'templates' => [
 		'oxsample_frontend.tpl' => 'hkreuter/oxsample/Templates/oxsample_frontend.tpl',
+		'ajax_controller.tpl'   => 'hkreuter/oxsample/Templates/Admin/ajax_controller.tpl',
+		'ajax_popup.tpl'        => 'hkreuter/oxsample/Templates/Admin/ajax_popup.tpl',
 	],
 	'blocks' => [
 		[

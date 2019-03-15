@@ -6,6 +6,7 @@
 
 $aLang = [
 	'charset'                                   => 'UTF-8',
+	'oxsample_tab'                              => 'Ajax Popup',
 	'SHOP_MODULE_GROUP_oxsample_main'           => 'Einstellungen',
 	'SHOP_MODULE_OxSampleGreetingMode'          => 'Begrüßungsmodus',
 	'SHOP_MODULE_OxSampleGreetingMode_polite'   => 'höflich',
@@ -14,4 +15,5 @@ $aLang = [
 	'SHOP_MODULE_OxSampleWidgetMode'            => 'Widgetmode',
 	'SHOP_MODULE_OxSampleWidgetMode_on'         => 'an',
 	'SHOP_MODULE_OxSampleWidgetMode_off'        => 'aus',
+	'CLICK_HERE'                                => 'Hier klicken'
 ];
