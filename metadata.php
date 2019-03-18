@@ -40,9 +40,14 @@ $aModule = [
 	'blocks' => [
 		[
 			'template' => 'layout/header.tpl',
-			'block'    =>'layout_header_bottom',
-			'file'     =>'/Templates/Blocks/header_main_bottom.tpl'
-		]
+			'block'    => 'layout_header_bottom',
+			'file'     => '/Templates/Blocks/header_main_bottom.tpl'
+		],
+		[
+			'template' => 'article_extend.tpl',
+			'block'    => 'admin_article_extend_form',
+			'file'     => '/Templates/Blocks/article_extend_form.tpl'
+		],
 	],
 	'settings' => [
 		/** Main */

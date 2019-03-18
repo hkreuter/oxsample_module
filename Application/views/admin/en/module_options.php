@@ -14,4 +14,6 @@ $aLang = [
 	'SHOP_MODULE_OxSampleWidgetMode'            => 'Widgetmode',
 	'SHOP_MODULE_OxSampleWidgetMode_on'         => 'on',
 	'SHOP_MODULE_OxSampleWidgetMode_off'        => 'off',
+	'ARTICLE_EXTEND_OXSAMPLE_COUNTER'           => 'Counter: Product to basket',
+	'HELP_OXSAMPLE_COUNTER'                     => 'Increase by one each time any amount of article is put to cart.',
 ];

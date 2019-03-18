@@ -14,4 +14,6 @@ $aLang = [
 	'SHOP_MODULE_OxSampleWidgetMode'            => 'Widgetmode',
 	'SHOP_MODULE_OxSampleWidgetMode_on'         => 'an',
 	'SHOP_MODULE_OxSampleWidgetMode_off'        => 'aus',
+	'ARTICLE_EXTEND_OXSAMPLE_COUNTER'           => 'Zähler: Artikel im Warenkorb',
+	'HELP_OXSAMPLE_COUNTER'                     => 'Zählt eins hoch wenn Artikel in beliebiger Menge in den Warenkorb gelegt wird.',
 ];
