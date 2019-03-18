@@ -106,7 +106,11 @@ class Module
 			'oxuser' => [
 					'field' => 'OXSAMPLE_STATUS',
 				    'specs' => " enum('active', 'inactive', 'blocked') NOT NULL DEFAULT 'active'"
-				]
+				],
+            'oxarticles' => [
+                'field' => 'OXSAMPLE_COUNTER',
+                'specs' => " int(11) NOT NULL DEFAULT '0' COMMENT 'tobasket counter'"
+            ]
 		];
 		foreach ($tableFields as $tableName => $sub) {
 			if (!$dbMetaDataHandler->fieldExists($sub['field'], $tableName)) {
@@ -114,6 +118,8 @@ class Module
 				\OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($query);
 			}
 		}
+
+        $dbMetaDataHandler->updateViews();
 	}
 
 	/**

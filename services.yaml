@@ -1,0 +1,11 @@
+services:
+
+  HkReuter\OxSampleModule\EventSubscriber\BasketChangedSubscriber:
+    class: \HkReuter\OxSampleModule\EventSubscriber\BasketChangedSubscriber
+    public: true
+    arguments:
+     $stopPropagation: false
+    calls:
+     - [setContext, ['@OxidEsales\EshopCommunity\Internal\Utility\ContextInterface']]
+    tags:
+     - {name: kernel.event_subscriber}
